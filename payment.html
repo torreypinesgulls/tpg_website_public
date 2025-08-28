@@ -113,7 +113,7 @@
 
 <script>
 	function showError(message) {
-		const error = document.getElementById('name').value.trim();
+		const error = document.getElementById('alert').value.trim();
 		error.textContent = message;
 			error.classList.remove('d-none');
 	}
@@ -154,7 +154,7 @@
 
 			// if(!name || !name.length) return showError("Please enter your name");
 			// if(!amaNumber || !amaNumber.length) return showError("Please enter your AMA number");
-			// if(!amount || amount==NaN || amount==0) return showError("Please select a membership type");
+			// if(!amount || Number.isNaN(amount) || amount==0) return showError("Please select a membership type");
 
 			return actions.order.create({
 				purchase_units: [{
@@ -163,6 +163,12 @@
 					},
 					custom_id: amaNumber,
 					description: `Membership dues for ${name} #${amaNumber}`
+	// 				,items: [{
+    //   name: 'Club Membership Dues',
+    //   description: document.getElementById('membership-type').selectedOptions[0].text,
+    //   quantity: '1',
+    //   unit_amount: { currency_code: 'USD', value: amount }
+    // }]
 				}]
 			});
 		},
